@@ -1,0 +1,66 @@
+Site Overview — Apna Fruit Box
+
+Repository path: d:/websites/Apna fruit/deploy
+Generated: 2025-12-23
+
+Pages
+- HomePage (`src/pages/HomePage.tsx`): Full-viewport cinematic hero (5 slides), autoplay 5s, swipe/drag support, dots-only pagination + chevrons, per-slide side artwork/images, "Explore Products" button on each slide (scrolls to #products), "Why Choose Fruite Box" section, Products grid (`#products`), floating cart CTA, and a CTA banner section near the bottom.
+- AboutPage (`src/pages/AboutPage.tsx`): Brand story, values, and a community CTA. Hero banner image now references `/banners/about-hero.jpg`.
+- ContactPage (`src/pages/ContactPage.tsx`): Phone, email, address, business hours, WhatsApp CTA and contact cards. Uses updated contact details for Apna Fruit Box.
+- CartPage (`src/pages/CartPage.tsx`): Cart UI, checkout modal, sends order text to WhatsApp (uses the configured WhatsApp number), product list and quantity controls.
+- PoliciesPage (`src/pages/PoliciesPage.tsx`): Privacy & Terms content — note: file remains on disk but was removed from navigation; consider deleting or archiving.
+
+Main Components
+- `Header` (`src/components/Header.tsx`): Top nav, mobile menu, cart button.
+- `Footer` (`src/components/Footer.tsx`): Quick links, contact summary, copyright.
+- `ProductCard` (`src/components/ProductCard.tsx`): Product tile used in grid.
+- `WhatsAppButton` (`src/components/WhatsAppButton.tsx`): Floating WhatsApp launcher.
+
+Key UI Elements & Interactions
+- Hero slider: viewport-aligned slides using translateX on a flex container; pointer events for drag; autoplay uses setInterval (5s); respects `prefers-reduced-motion`.
+- Slide CTAs: primary slide CTA + an "Explore Products" button added to every slide (scrolls to `#products`).
+- CTA section: bottom CTA now uses `/banners/cta-hero.jpg` and primary action is "Explore Products".
+- Scroll-to-top button: floating button in `App.tsx` appears after scrolling >300px and scrolls smoothly (respects reduced-motion).
+- Floating cart CTA: appears when cart has items, navigates to `cart` page.
+- Image fallbacks: hero images have onError fallback to the first slide image.
+
+Design System
+- Colors (Tailwind tokens from `tailwind.config.js`):
+  - `forest` (#1A3C34) (dark: #0f2820)
+  - `herbal` (#4A7C59) (light: #5a9369, dark: #3a6249)
+  - `sage` (#E6F0E8) (light: #f0f7f2)
+  - `cream` (#FAF9F6)
+  - `gold` (#CDAA63) (light: #d9b877, dark: #b89650)
+  - `stone` (#666666)
+  - `bright-white` (#FFFFFF)
+- Fonts: `display` = Playfair Display (serif), `body` = Inter (sans-serif)
+- Shadows & animations: `premium`, `premium-lg`, `glow`, `gold-glow`; keyframes for fade, slide-up, and float.
+
+Color Theory (intent & usage)
+- Brand intent: `forest` (deep green) is the anchor color — it communicates trust, freshness, and a stable, natural foundation for the brand. `herbal` is the primary action color used for CTAs and interactive accents; it reads as healthy and inviting.
+- Supporting neutrals: `sage` and `cream` create breathable backgrounds and card surfaces so product photography remains the visual focal point.
+- Accent & hierarchy: `gold` is a sparing accent for premium cues (badges, subtle highlights) used to communicate quality without overwhelming the natural palette.
+- Contrast & accessibility: Use `bright-white` on `forest`/`herbal` for high-contrast CTAs, and `forest` or `stone` on `cream`/`sage` backgrounds for readable body copy. Verify WCAG contrast (AA) for text sizes and adjust tints if necessary.
+- Imagery strategy: Product photography provides the primary chroma; UI colors are intentionally restrained to frame imagery. Use card backgrounds (`cream`/`sage`) behind images, and reserve saturated greens for actions and highlights.
+- Motion & affordance: Interactive states (hover/focus) use `herbal` with gentle glow and elevation to indicate affordance, matching the calm, premium tone.
+
+Assets & Images (paths referenced)
+- Hero slides: `/s3.jpg`, `/s4.jpg`, `/s5.jpg`, `/s8.jpg`, `/s9.jpg`.
+- Why-choose gallery: `/w3.jpg`, `/w2.jpg`, `/w1.jpg`, `/w4.jpg`.
+- New banner suggestions: `/banners/cta-hero.jpg`, `/banners/about-hero.jpg` (place under `public/banners/`).
+- Logo: `/logo.svg`, `/logov2.svg`.
+
+Files recently changed
+- `src/pages/HomePage.tsx`, `src/pages/AboutPage.tsx`, `src/pages/ContactPage.tsx`, `src/pages/CartPage.tsx`, `src/components/Footer.tsx`, `src/components/WhatsAppButton.tsx`, `src/components/Header.tsx`, `src/App.tsx`.
+
+Accessibility & Notes
+- Reduced-motion preference is respected in autoplay, transforms, and scrolling.
+- Pagination is keyboard-focusable but further aria-live updates and skip-links could improve accessibility.
+- `PoliciesPage.tsx` exists but is unlinked—decide to delete or archive.
+
+Suggested next steps
+- Add the `/public/banners` images or update paths to existing assets.
+- Run dev server and visually QA hero sizing, dot navigation, and CTA placement across breakpoints.
+- Optional: Replace remaining build artifacts (dist) references and search for legacy brand mentions if full rename desired.
+
+End of overview.
